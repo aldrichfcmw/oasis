@@ -42,10 +42,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WK Admin - Tables</title>
+    <title>Oasis Admin - Tables</title>
 
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="assets/images/icon/Icon WK.png" type="image/png">
+    <link rel="shortcut icon" href="assets/icon.png" type="image/png">
 
     <!----===== Boxicons CSS ===== -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -112,10 +112,10 @@
                                             <td><?= $row['jumlah_produk']; ?></td>
                                             <td><?= $row['harga_produk']; ?></td>
                                             <td>
-                                                <a href="edit-dagangan?id_produk=<?= $row['id_produk']; ?>" class="btn btn-sm btn-flat btn-warning">
+                                                <a href="edit-product.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-sm btn-flat btn-warning">
                                                 <i class='fas fa-fw fa-file' ></i>
                                                 </a>
-                                                <a href="dagangan?del_item=<?= $row['id_produk']; ?>" 
+                                                <a href="table-product.php?del_item=<?= $row['id_produk']; ?>" 
                                                 class="btn btn-sm btn-flat btn-danger" onclick="return confirm('Hapus produk <?= $row['nama_produk']; ?>?')">
                                                 <i class='fas fa-fw fa-trash'></i>
                                                 </a>

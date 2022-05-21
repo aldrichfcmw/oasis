@@ -11,7 +11,7 @@ if (!isset($_SESSION['login'])) {
 require 'function.php';
 
 // Menampilkan semua data dari table siswa berdasarkan nis secara Descending
-$dagangan = query("SELECT * FROM kategori ORDER BY id_kategori");
+$kategori = query("SELECT * FROM kategori ORDER BY id_kategori");
 
 
 // Jika fungsi tambah lebih dari 0/data tersimpan, maka munculkan alert dibawah
@@ -19,7 +19,7 @@ if(isset($_POST['simpan'])) {
     if (tambah($_POST) > 0) {
         echo "<script>
                 alert('Data Dagangan berhasil ditambahkan!');
-                document.location.href = 'dagangan';
+                document.location.href = 'table-product.php';
             </script>";
     } else {
         // Jika fungsi tambah dari 0/data tidak tersimpan, maka munculkan alert dibawah
@@ -42,9 +42,9 @@ if(isset($_POST['simpan'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WK Admin - Add Product</title>
+    <title>Oasis Admin - Add Product</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="assets/images/icon/icon WK.png" type="image/png">
+    <link rel="shortcut icon" href="assets/icon.png" type="image/png">
 
     <!----===== Boxicons CSS ===== -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -83,8 +83,8 @@ if(isset($_POST['simpan'])) {
                                     <label class="mt-2" for="">Tipe Produk</label>
                                     <select class="form-control" name="id_kategori">                            
                                         <option disabled selected value>Default select</option>
-                                        <?php foreach ($dagangan as $row) : ?>
-                                        <option value="<?= $row['id_kategori'];?>"><?= $row['id_kategori']; ?> - <?= $row['kategori']; ?></option>
+                                        <?php foreach ($kategori as $row) : ?>
+                                        <option value="<?= $row['kategori'];?>"><?= $row['id_kategori']; ?> - <?= $row['kategori']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <label class="mt-2" for="">Nama Produk</label>

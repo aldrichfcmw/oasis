@@ -11,30 +11,28 @@ if (!isset($_SESSION['login'])) {
 require 'function.php';
 
 // Mengambil data dari nis dengan fungsi get
-$id_barang = $_GET['id_barang'];
+$id_produk = $_GET['id_produk'];
 
 // Menampilkan semua data dari table siswa berdasarkan nis secara Descending
-$dagangan = query("SELECT * FROM dagangan WHERE id_barang=$id_barang")[0];
-$idk=$dagangan['id_kategori'];
-$kate = mysqli_query($koneksi,"SELECT * FROM kategori WHERE id_kategori=$idk");
-$kategori = mysqli_fetch_array($kate);
+$product = query("SELECT * FROM product WHERE id_produk=$id_produk")[0];
+$idk=$product['kategori'];
 
 // Jika fungsi tambah lebih dari 0/data tersimpan, maka munculkan alert dibawah
-if (isset($_POST['rubah'])) {
+if (isset($_POST['ubah'])) {
     if (ubah($_POST) > 0) {
         echo "<script>
-                alert('Data Dagangan berhasil diubah!');
-                document.location.href = 'dagangan';
+                alert('Data product berhasil diubah!');
+                document.location.href = 'table-product.php';
             </script>";
     } else {
         // Jika fungsi tambah dari 0/data tidak tersimpan, maka munculkan alert dibawah
         echo "<script>
-                alert('Data Dagangan gagal diubah!');
+                alert('Data product gagal diubah!');
             </script>";
     }
 }
-$id_kt=$dagangan['id_kategori'];
-$id_br=$dagangan['id_barang'];
+
+$id_br=$product['id_produk'];
 
 ?>
 <!DOCTYPE html>
@@ -48,9 +46,9 @@ $id_br=$dagangan['id_barang'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WK Admin - Edit Product</title>
+    <title>Oasis Admin - Edit Product</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="assets/images/icon/Icon WK.png" type="image/png">
+    <link rel="shortcut icon" href="assets/icon.png" type="image/png">
 
     <!----===== Boxicons CSS ===== -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -85,29 +83,36 @@ $id_br=$dagangan['id_barang'];
                             <div class="col-8">
                                 <h4>Tipe Produk</h4>
                                 <div class="form-group ml-4">                                
-                                    <input type="text" name="id_kt" class="form-control" value="<?php echo "$id_kt" ?>">
+                                    <input type="text" name="id_kt" class="form-control" value="<?php echo "$idk" ?>">
                                     <label class="mt-4" for="">id Produk</label>
                                     <input type="text" name="id_br" class="form-control" value="<?php echo "$id_br" ?>">
                                     
                                     <label class="mt-4" for="">Nama Produk</label>
-                                        <input type="text" name="nama" class="form-control" value="<?= $dagangan['nama_barang'];?>">                
+                                        <input type="text" name="nama" class="form-control" value="<?= $product['nama_produk'];?>">                
                                 </div>
                                 <div class="form-group mt-4">
                                     <h4>Informasi Produk</h4>
                                     <div class="col">
                                         <label for="gambar" class="form-label">Gambar <i>(Saat ini)</i></label> <br>
-                                        <img src="assets/images/produk/<?= $dagangan['gambar_barang'];?>" class="thumbnail-view" alt=""><br>
-                                        <input type="hidden" name="gambarLama" value="<?= $dagangan['gambar_barang']; ?>">
+                                        <img src="assets/img/produk/<?= $product['gambar_produk'];?>" class="thumbnail-view" alt=""><br>
+                                        <input type="hidden" name="gambarLama" value="<?= $product['gambar_produk']; ?>">
                                         <label >Gambar Produk</label><br>
-                                        <label class="imagepicker imagepicker-add thumbnail">
-                                        <input type='file' id="gambar" name="gambar">
+                                        <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Upload</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" name="gambar" class="custom-file-input" id="inputGroupFile01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="form-group mt-4">
                                     <div class="col">
                                         <div class="mb-3 ">
                                             <label for="validationTextarea">Deskripsi Produk</label>
-                                            <textarea class="form-control" name="deskripsi" value="<?= $dagangan['deskripsi_barang'];?>"><?= $dagangan['deskripsi_barang'];?></textarea>
+                                            <textarea class="form-control" name="deskripsi" value="<?= $product['deskripsi_produk'];?>"><?= $product['deskripsi_produk'];?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -119,14 +124,14 @@ $id_br=$dagangan['id_barang'];
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp.</span>
                                             </div>
-                                            <input type="text" name="harga" class="form-control" value="<?= $dagangan['harga_barang'];?>">
+                                            <input type="text" name="harga" class="form-control" value="<?= $product['harga_produk'];?>">
                                         </div>
                                         <label for="">Stok</label>
-                                        <input type="text" name="jumlah" class="form-control" value="<?= $dagangan['jumlah_barang'];?>">
+                                        <input type="text" name="jumlah" class="form-control" value="<?= $product['jumlah_produk'];?>">
                                     </div>
                                 </div>
                                 <div class="col text-align-center mb-5">
-                                    <button type="submit" class="btn btn-lg btn-primary btn-block" name="rubah">Ubah Dagangan</button>
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block" name="ubah">Ubah product</button>
                                 </div>
                             </div>
                         </div>

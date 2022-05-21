@@ -5,7 +5,7 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
             
-            <img src="asset/icon" width="25px" alt="" srcset="">
+            <img src="assets/icon.png" width="25px" alt="" srcset="">
         </div>
         <div class="sidebar-brand-text mx-3">Oasis Admin</div>
     </a>
@@ -172,8 +172,8 @@
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['name'];?></span>
-                        <img class="img-profile rounded-circle"
-                            src="asset/images/profile/fotolaki.png">
+                        <!-- <img class="img-profile rounded-circle" src="assets/icon.png"> -->
+                        <i class="fa fa-user"></i>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

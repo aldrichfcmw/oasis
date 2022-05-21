@@ -24,7 +24,7 @@ require 'function.php';
 
     <title>OASIS - Dashboard</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="asset/images/icon/Icon WK.png" type="image/png">
+    <link rel="shortcut icon" href="assets/icon.png" type="image/png">
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

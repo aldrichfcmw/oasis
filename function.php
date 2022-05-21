@@ -26,32 +26,21 @@ function query($query)
 function tambah($data)
 {
     global $koneksi;
-    $id_kategori = $data['id_kategori'];
-    $pilih = mysqli_query($koneksi, "SELECT * FROM dagangan where id_kategori=$id_kategori order by id_kategori DESC LIMIT 1");
-    $nilai = mysqli_fetch_array($pilih);
-    $jumlah =mysqli_num_rows($pilih);
-    if($jumlah > 0){
-        $a = $nilai['id_barang'];
-        $b = 1;
-        $id= $a + $b;
-    } else{
-        $a = $id_kategori;
-        $b = 1;
-        $id = "$a$b";
-    }
-    // echo "<script>alert('$a $b $id')</script>"; 
-    $id_barang = $id; 
-    $nama_barang = htmlspecialchars($data['nama']);
-    $deskripsi_barang = htmlspecialchars($data['deskripsi']);
-    $jumlah_barang = $data['jumlah'];
-    $harga_barang = $data['harga'];
+    $kategori = $data['kategori'];
+    $pilih = mysqli_query($koneksi, "SELECT * FROM product where kategori=$kategori order by kategori DESC LIMIT 1");
+    $id = mysqli_fetch_array($pilih);
+    $id_produk = $id+1; 
+    $nama_produk = htmlspecialchars($data['nama']);
+    $deskripsi_produk = htmlspecialchars($data['deskripsi']);
+    $jumlah_produk = $data['jumlah'];
+    $harga_produk = $data['harga'];
     $gambar = upload();
 
     if (!$gambar) {
         return false;
     }
 
-    $sql = "INSERT INTO dagangan VALUES ('$id_barang','$id_kategori','$nama_barang','$gambar','$deskripsi_barang','$jumlah_barang','$harga_barang')";
+    $sql = "INSERT INTO product VALUES ('$id_produk','$kategori','$nama_produk','$gambar','$deskripsi_produk','$jumlah_produk','$harga_produk')";
 
     mysqli_query($koneksi, $sql);
 
@@ -60,14 +49,14 @@ function tambah($data)
 
 
 // Membuat fungsi hapus
-function hapus($id_barang)
+function hapus($id_produk)
 {
     global $koneksi;
-    $pilih = mysqli_query($koneksi, "SELECT * FROM dagangan WHERE id_barang= $id_barang");
+    $pilih = mysqli_query($koneksi, "SELECT * FROM product WHERE id_produk= $id_produk");
     $datafoto = mysqli_fetch_array($pilih);
-    $foto = $datafoto['gambar_barang'];
-    unlink("asset/images/produk/".$foto);
-    mysqli_query($koneksi, "DELETE FROM dagangan WHERE id_barang = $id_barang");
+    $foto = $datafoto['gambar_produk'];
+    unlink("assets/img/produk/".$foto);
+    mysqli_query($koneksi, "DELETE FROM product WHERE id_produk = $id_produk");
     return mysqli_affected_rows($koneksi);
 }
 
@@ -76,12 +65,12 @@ function ubah($data)
 {
     global $koneksi;
 
-    $id_kategori = $data['id_kt'];
-    $id_barang = $data['id_br'];
-    $nama_barang = htmlspecialchars($data['nama']);
-    $deskripsi_barang = htmlspecialchars($data['deskripsi']);
-    $jumlah_barang = $data['jumlah'];
-    $harga_barang = $data['harga'];
+    $kategori = $data['id_kt'];
+    $id_produk = $data['id_br'];
+    $nama_produk = htmlspecialchars($data['nama']);
+    $deskripsi_produk = htmlspecialchars($data['deskripsi']);
+    $jumlah_produk = $data['jumlah'];
+    $harga_produk = $data['harga'];
     $gambarLama = $data['gambarLama'];
 
     if ($_FILES['gambar']['error'] === 4) {
@@ -89,9 +78,9 @@ function ubah($data)
     } else {
         $gambar = upload();
     }
-    unlink("asset/images/produk/".$gambarLama);
+    unlink("assets/img/produk/".$gambarLama);
 
-    $sql = "UPDATE dagangan SET nama_barang = '$nama_barang', gambar_barang = '$gambar', deskripsi_barang = '$deskripsi_barang', jumlah_barang = '$jumlah_barang', harga_barang = '$harga_barang' WHERE id_barang = $id_barang";
+    $sql = "UPDATE product SET nama_produk = '$nama_produk', gambar_produk = '$gambar', deskripsi_produk = '$deskripsi_produk', jumlah_produk = '$jumlah_produk', harga_produk = '$harga_produk' WHERE id_produk = $id_produk";
 
     mysqli_query($koneksi, $sql);
 
@@ -136,7 +125,7 @@ function upload()
     $namaFileBaru .= $ext;
 
     // memindahkan file ke dalam folde img dengan nama baru
-    move_uploaded_file($tmpName, 'asset/images/produk/' . $namaFileBaru);
+    move_uploaded_file($tmpName, 'assets/img/produk/' . $namaFileBaru);
 
     return $namaFileBaru;
 }
