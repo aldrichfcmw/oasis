@@ -1,9 +1,13 @@
 <?php
     session_start();
-    require 'config.php';
     // Menampilkan semua data dari table siswa berdasarkan nis secara Descending
     //$kategori = mysqli_query($conn,"SELECT * FROM produk ORDER BY id_produk");
     $admin=0;
+    // Memanggil atau membutuhkan file function.php
+    require 'function.php';
+
+    // Menampilkan semua data dari table siswa berdasarkan nis secara Descending
+    $produk = query("SELECT * FROM product ORDER BY id_produk");
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +21,7 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        
         <!-- Google fonts-->
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
@@ -99,7 +104,7 @@
                             <div class="d-flex flex-column flex-lg-row align-items-center">
                                 <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="assets/img/google-play-badge.svg" alt="..." /></a>
                                 <a href="#!"><img class="app-badge" src="assets/img/app-store-badge.svg" alt="..." /></a>
-                            </div>s
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -249,54 +254,27 @@
                     <div class="glide">
                         <div class="slider__track glide__track" data-glide-el="track">
                             <ul class="glide__slides">
+                            <?php foreach ($produk as $row) : ?>
                                 <li class="glide__slide">
                                     <div class="card bg-grey text-white rounded-lg" style="width: 13rem;height:20rem;">
                                         <div class="card-body mt-4 text-center">
                                             <img src="assets/img/macbookair.png" style="width: 150px;" class="" alt="...">
                                         </div>
                                             <div class="card-body mt-4 p-4">
-                                                <h7 style="color:#B0B0B0;">Laptop</h7>
-                                                <h6 class="mt-2">Infinitebook 14i3</h6>
-                                                <h6>$2019</h6>
+                                                <h8 style="color:#B0B0B0;"><?= $row['kategori']; ?></h8><br>
+                                                <h7 class="mt-2"><?= $row['nama_produk']; ?></h7>
+                                                <div class="row">
+                                                <div class="col">
+                                                <h7 class="mt-2">Rp.<?= $row['harga_produk']; ?></h7>
+                                                </div>
+                                                <div class="col d-flex justify-content-end">
+                                                <i class="bi bi-cart"></i>
+                                                </div>
+                                                </div>
                                             </div>
                                     </div>
                                 </li>
-                                <li class="glide__slide">
-                                    <div class="card bg-grey text-white rounded-lg" style="width: 13rem;height:20rem;">
-                                        <div class="card-body mt-4 text-center">
-                                            <img src="assets/img/macbookair.png" style="width: 150px;" class="" alt="...">
-                                        </div>
-                                            <div class="card-body mt-4 p-4">
-                                                <h7 style="color:#B0B0B0;">Laptop</h7>
-                                                <h6 class="mt-2">Infinitebook 14i3</h6>
-                                                <h6>$2019</h6>
-                                            </div>
-                                    </div>
-                                </li>
-                                <li class="glide__slide">
-                                    <div class="card bg-grey text-white rounded-lg" style="width: 13rem;height:20rem;">
-                                        <div class="card-body mt-4 text-center">
-                                            <img src="assets/img/macbookair.png" style="width: 150px;" class="" alt="...">
-                                        </div>
-                                            <div class="card-body mt-4 p-4">
-                                                <h7 style="color:#B0B0B0;">Laptop</h7>
-                                                <h6 class="mt-2">Infinitebook 14i3</h6>
-                                                <h6>$2019</h6>
-                                            </div>
-                                    </div>
-                                </li>
-                                <li class="glide__slide">
-                                    <div class="card bg-grey text-white rounded-lg" style="width: 13rem;height:20rem;">
-                                        <div class="card-body mt-4 text-center">
-                                            <img src="assets/img/macbookair.png" style="width: 150px;" class="" alt="...">
-                                        </div>
-                                            <div class="card-body mt-4 p-4">
-                                                <h7 style="color:#B0B0B0;">Laptop</h7>
-                                                <h6 class="mt-2">Infinitebook 14i3</h6>
-                                                <h6>$2019</h6>
-                                            </div>
-                                    </div>
-                                </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                         <div class="glide__bullets" data-glide-el="controls[nav]">
