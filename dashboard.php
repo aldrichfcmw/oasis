@@ -55,7 +55,6 @@ require 'function.php';
                 <div class="container-fluid">
 
                     
-
                     <!-- Content Row -->
                     <div class="row">
 
