@@ -258,7 +258,7 @@
                                 <li class="glide__slide">
                                     <div class="card bg-grey text-white rounded-lg" style="width: 13rem;height:20rem;">
                                         <div class="card-body mt-4 text-center">
-                                            <img src="assets/img/macbookair.png" style="width: 150px;" class="" alt="...">
+                                            <img src="assets/img/produk/<?= $row['gambar_produk']; ?>" style="width: 150px;" class="" alt="...">
                                         </div>
                                             <div class="card-body mt-4 p-4">
                                                 <h8 style="color:#B0B0B0;"><?= $row['kategori']; ?></h8><br>
