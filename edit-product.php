@@ -50,19 +50,19 @@ $id_br=$dagangan['id_barang'];
 
     <title>WK Admin - Edit Product</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="asset/images/icon/Icon WK.png" type="image/png">
+    <link rel="shortcut icon" href="assets/images/icon/Icon WK.png" type="image/png">
 
     <!----===== Boxicons CSS ===== -->
-    <link href="asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="asset/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="asset/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -96,7 +96,7 @@ $id_br=$dagangan['id_barang'];
                                     <h4>Informasi Produk</h4>
                                     <div class="col">
                                         <label for="gambar" class="form-label">Gambar <i>(Saat ini)</i></label> <br>
-                                        <img src="asset/images/produk/<?= $dagangan['gambar_barang'];?>" class="thumbnail-view" alt=""><br>
+                                        <img src="assets/images/produk/<?= $dagangan['gambar_barang'];?>" class="thumbnail-view" alt=""><br>
                                         <input type="hidden" name="gambarLama" value="<?= $dagangan['gambar_barang']; ?>">
                                         <label >Gambar Produk</label><br>
                                         <label class="imagepicker imagepicker-add thumbnail">
@@ -161,14 +161,14 @@ $id_br=$dagangan['id_barang'];
     
 
     <!-- Bootstrap core JavaScript-->
-    <script src="asset/vendor/jquery/jquery.min.js"></script>
-    <script src="asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="asset/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/sb-admin-2.min.js"></script>
 
 </body>
 
