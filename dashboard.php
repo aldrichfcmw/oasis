@@ -10,6 +10,12 @@ if (!isset($_SESSION['login'])) {
 // Memanggil atau membutuhkan file function.php
 require 'function.php';
 
+// Menampilkan semua data dari table riwayat pembayaran berdasarkan id
+$dagangan = mysqli_query($koneksi,"SELECT * FROM product ORDER BY id_produk");
+while($row = mysqli_fetch_array($dagangan)){
+    $produk[] = $row['nama_produk'];
+    $jumlah[] = $row['jumlah_produk'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -170,8 +176,10 @@ require 'function.php';
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
+                                    <div class="container">
+                                    <div class="">
                                         <canvas id="myAreaChart"></canvas>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -199,22 +207,14 @@ require 'function.php';
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                               <!-- Card Body -->
+                               <div class="card-body">
+                                    <div class="container">
+                                        <div class="">
+                                            <canvas id="myPieChart"></canvas>
+                                        </div>
                                     </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                
                                 </div>
                             </div>
                         </div>
@@ -259,12 +259,67 @@ require 'function.php';
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="assets/js/demo/chart-are-demo.js"></script>
-    <script src="assets/js/demo/chart-pie-demo.js"></script>
+    <script>
+		var ctx = document.getElementById("myAreaChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: <?php echo json_encode($produk); ?>,
+				datasets: [{
+					label: 'Grafik Penjualan',
+					data: <?php echo json_encode($jumlah); ?>,
+					backgroundColor: 'rgba(255, 99, 132, 0.2)',
+					borderColor: 'rgba(255,99,132,1)',
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		});
+	</script>
+    <script>
+		var ctx = document.getElementById("myPieChart").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: <?php echo json_encode($produk); ?>,
+				datasets: [{
+					label: 'Grafik Peminat',
+					data: <?php echo json_encode($jumlah); ?>,
+					backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)'
+					],
+					borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)'
+					],
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		});
+	</script>
 
 </body>
 

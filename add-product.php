@@ -13,18 +13,17 @@ require 'function.php';
 // Menampilkan semua data dari table siswa berdasarkan nis secara Descending
 $kategori = query("SELECT * FROM kategori ORDER BY id_kategori");
 
-
 // Jika fungsi tambah lebih dari 0/data tersimpan, maka munculkan alert dibawah
 if(isset($_POST['simpan'])) {
     if (tambah($_POST) > 0) {
         echo "<script>
-                alert('Data Dagangan berhasil ditambahkan!');
+                alert('Data Produk berhasil ditambahkan!');
                 document.location.href = 'table-product.php';
             </script>";
     } else {
         // Jika fungsi tambah dari 0/data tidak tersimpan, maka munculkan alert dibawah
         echo "<script>
-                alert('Data Dagangan gagal ditambahkan!');
+                alert('Data Produk gagal ditambahkan!');
             </script>";
     }
 }
@@ -81,7 +80,7 @@ if(isset($_POST['simpan'])) {
                             <div class="col-8">
                                 <div class="form-group ml-4">
                                     <label class="mt-2" for="">Tipe Produk</label>
-                                    <select class="form-control" name="id_kategori">                            
+                                    <select class="form-control" name="kate">                            
                                         <option disabled selected value>Default select</option>
                                         <?php foreach ($kategori as $row) : ?>
                                         <option value="<?= $row['kategori'];?>"><?= $row['id_kategori']; ?> - <?= $row['kategori']; ?></option>

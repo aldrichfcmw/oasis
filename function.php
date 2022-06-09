@@ -26,10 +26,14 @@ function query($query)
 function tambah($data)
 {
     global $koneksi;
-    $kategori = $data['kategori'];
-    $pilih = mysqli_query($koneksi, "SELECT * FROM product where kategori=$kategori order by kategori DESC LIMIT 1");
-    $id = mysqli_fetch_array($pilih);
-    $id_produk = $id+1; 
+    $kategori = $data['kate'];
+    $pilih = mysqli_query($koneksi, "SELECT * FROM product order by id_produk DESC LIMIT 1");
+    $nilai = mysqli_fetch_array($pilih);
+    $jumlah =mysqli_num_rows($pilih);
+    $a = $nilai['id_produk'];
+    $b = 1;
+    $id_produk= $a + $b;
+    // echo "<script>alert('$a $b $id')</script>"; 
     $nama_produk = htmlspecialchars($data['nama']);
     $deskripsi_produk = htmlspecialchars($data['deskripsi']);
     $jumlah_produk = $data['jumlah'];
