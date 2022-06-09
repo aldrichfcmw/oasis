@@ -33,6 +33,7 @@ function tambah($data)
     $a = $nilai['id_produk'];
     $b = 1;
     $id_produk= $a + $b;
+    //a
     // echo "<script>alert('$a $b $id')</script>"; 
     $nama_produk = htmlspecialchars($data['nama']);
     $deskripsi_produk = htmlspecialchars($data['deskripsi']);
